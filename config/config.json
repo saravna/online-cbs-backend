@@ -17,11 +17,12 @@
     "operatorsAliases": false
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "username": "postgres",
+    "password": "postgres",
+    "database": "canteen",
+    "host": "localhost",
+    "port": 5432,
+    "server":"sample",
+    "dialect": "postgres"
   }
 }
