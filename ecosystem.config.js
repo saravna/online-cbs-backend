@@ -24,7 +24,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/saravna/online-cbs-backend.git',
       path : '/var/www/backend',
-      'post-deploy' : 'sudo npm install && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : 'sudo npm install && npx sequelize-cli db:migrate && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
