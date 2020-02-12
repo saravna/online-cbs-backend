@@ -21,7 +21,8 @@
     "password": "postgres",
     "database": "canteen",
     "host": "canteen.cllomvzudpom.us-east-2.rds.amazonaws.com",
+    "port": 5432,
     "dialect": "postgres",
-    "port": 5432
+    "dialectOptions": { "ssl": true }
   }
 }
