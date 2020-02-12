@@ -19,6 +19,7 @@
   "production": {
     "username": "postgres",
     "password": "postgres",
+    "server": "canteen",
     "database": "canteen",
     "host": "canteen.cllomvzudpom.us-east-2.rds.amazonaws.com",
     "port": 5432,
