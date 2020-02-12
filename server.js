@@ -11,6 +11,10 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : true}))
 
+app.get('/', (req, res) => {
+    res.json("Hit")
+})
+
 //User
 var userController = require('./controller/user')
 app.post('/signup', userController.signup)
