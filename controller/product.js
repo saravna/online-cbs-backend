@@ -16,11 +16,6 @@ module.exports.allProductsWithQuantity = (req, res) => {
         include : [{
             model : model.menu,
             attributes : ['quantity'],
-            where : {
-                quantity : {
-                    [Op.gt] : 0
-                }
-            }
         }]
     })
     .then(products => {
