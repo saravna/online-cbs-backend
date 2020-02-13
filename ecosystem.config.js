@@ -20,7 +20,7 @@ module.exports = {
   deploy : {
     production : {
       user : 'ubuntu',
-      host : '18.220.60.227',
+      host : '3.18.62.48',
       ref  : 'origin/master',
       repo : 'https://github.com/saravna/online-cbs-backend.git',
       path : '/var/www/backend',
