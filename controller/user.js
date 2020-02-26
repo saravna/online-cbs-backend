@@ -106,13 +106,15 @@ const mail = async (token, mail) => {
         }
       });
 
+      var url = process.env.NODE_ENV==="development"?"http://localhost:3000/":"cashlesscanteen.gq/"
+
       let mailOptions = {
         from: "Saravana Kumar",
         to: mail,
         // cc: <cc mail add>,
         subject: "Password Recovery", 
         // text: token, 
-        html: `<p><a href="http://localhost:3000/recoverpassword/?a=${token}">Click Here</a> to change password</p>`, 
+        html: `<p><a href="${url}recoverpassword/?a=${token}">Click Here</a> to change password</p>`, 
         // attachments: [
         //   {
         //     path: <path>
