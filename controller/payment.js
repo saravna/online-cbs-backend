@@ -67,5 +67,5 @@ module.exports.stripePayment = (req, res ) => {
         console.log(resp)
         res.json(resp)
     })
-    .catch(err => console.log(err))
+    .catch(err => res.json({err : err.raw.message}))
 }
