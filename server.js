@@ -21,6 +21,7 @@ app.post('/signup', userController.signup)
 app.post('/signin', userController.signin)
 app.get('/resetpassword/:mail', userController.resetPassword)
 app.post('/updatepassword', userController.updatePassword)
+app.post('/fetchusersdata', userController.fetchUsersData)
 //Token Verify
 app.post('/verifytoken', userController.verifyToken)
 

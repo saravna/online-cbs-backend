@@ -31,13 +31,33 @@ module.exports.signin = (req, res) => {
     .catch(err => res.json({error:"Error finding user"}))
 }
 
+module.exports.fetchUsersData = (req, res) => {
+    console.log(req.body)
+    jwt.verifyToken(req.body.token)
+    .then(data => {
+        // if(!data.error){
+            model.user.findAll({
+                attributes : ['id','mail','blocked'],
+                where : {
+                    role : 'USER'
+                },
+                order : [['mail','ASC']]
+            })
+            .then(data => res.json(data.map(d => d.dataValues)))
+        // }
+    })
+}
+
 module.exports.signup = (req, res) => {
+    console.log(req.body)
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
             model.user.create({
                 mail : req.body.mail,
                 password : hash,
-                role : req.body.role
+                role : req.body.role,
+                blocked : req.body.blocked,
+                mobile : req.body.mobile
             })
             .then(user => {
                 if(user.dataValues){

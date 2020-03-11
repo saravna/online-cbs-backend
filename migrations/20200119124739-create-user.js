@@ -9,13 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       mail: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique : true
       },
       password: {
         type: Sequelize.STRING
       },
       role: {
         type: Sequelize.STRING
+      },
+      mobile : {
+        type : Sequelize.STRING
+      },
+      blocked : {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

@@ -24,7 +24,12 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/saravna/online-cbs-backend.git',
       path : '/var/www/backend',
-      'post-deploy' : 'sudo npm install && npx sequelize-cli db:migrate --env production && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : `sudo npm install 
+                        && npx sequelize-cli db:migrate:undo --name 20200125111518-create-order 
+                        && npx sequelize-cli db:migrate:undo --name 20200125113725-create-order-items 
+                        && npx sequelize-cli db:migrate:undo --name 20200119124739-create-user
+                        && npx sequelize-cli db:migrate --env production 
+                        && pm2 reload ecosystem.config.js --env production`
     }
   }
 };
