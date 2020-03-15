@@ -42,7 +42,7 @@ module.exports.fetchUsersData = (req, res) => {
     .then(data => {
         // if(!data.error){
             model.user.findAll({
-                attributes : ['id','mail','blocked'],
+                attributes : ['id','mail','blocked','mobile'],
                 where : {
                     role : 'USER'
                 },
