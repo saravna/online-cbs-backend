@@ -26,9 +26,6 @@ module.exports = {
       path : '/var/www/backend',
       'post-deploy' : `sudo npm install 
                         && fuser -k 4000/tcp
-                        && npx sequelize-cli db:migrate:undo --name 20200125111518-create-order --env production
-                        && npx sequelize-cli db:migrate:undo --name 20200125113725-create-order-items --env production
-                        && npx sequelize-cli db:migrate:undo --name 20200119124739-create-user --env production
                         && npx sequelize-cli db:migrate --env production 
                         && npm start
                         && pm2 reload ecosystem.config.js --env production`
