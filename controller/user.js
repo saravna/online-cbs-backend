@@ -2,10 +2,11 @@ var jwt = require('../jwt/jwt')
 var model = require('../models')
 var bcrypt = require('bcrypt')
 var nodemailer = require('nodemailer')
+var Sequelize = require('sequelize')
 
 module.exports.signin = (req, res) => {
     model.user.findAll({
-        attributes : ['id','mail', 'password'],
+        attributes : ['id','mail', 'password','blocked'],
         where : {mail : req.body.mail}
     })
     .then(users => {
@@ -15,8 +16,12 @@ module.exports.signin = (req, res) => {
                 console.log(err, result)
                 if(!err){
                     if(result){
-                        jwt.generateToken({id:users[0].dataValues.id,mail : req.body.mail})
+                        if(!users[0].dataValues.blocked) {
+                            jwt.generateToken({id:users[0].dataValues.id,mail : req.body.mail})
                             .then(token => res.json({authToken : token}))   
+                        } else {
+                            res.json({error : "You have been blocked"})
+                        }
                     } else {
                         res.json({error : "Username or Password is invalid"})
                     }
@@ -68,6 +73,15 @@ module.exports.signup = (req, res) => {
             .catch(err => res.json({error:err}))
         });
     });
+}
+
+module.exports.handleBlock = (req, res) => {
+    const id = parseInt(req.params.id)
+    model.user.update(
+        {   blocked : Sequelize.literal('NOT blocked')  },
+        {   where : {id}    }
+    )
+    .then(data => res.json("success"))
 }
 
 module.exports.updatePassword = (req, res) => {
