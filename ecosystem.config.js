@@ -29,8 +29,8 @@ module.exports = {
                         && npx sequelize-cli db:migrate:undo --name 20200125113725-create-order-items 
                         && npx sequelize-cli db:migrate:undo --name 20200119124739-create-user
                         && npx sequelize-cli db:migrate --env production 
-                        && pm2 reload ecosystem.config.js --env production
-                        && npm start`
+                        && npm start
+                        && pm2 reload ecosystem.config.js --env production`
     }
   }
 };
