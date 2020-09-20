@@ -10,10 +10,8 @@ module.exports.signin = (req, res) => {
         where : {mail : req.body.mail}
     })
     .then(users => {
-        console.log(users)
         if(users && users[0].dataValues){
             bcrypt.compare(req.body.password,users[0].dataValues.password,(err,result)=> {
-                console.log(err, result)
                 if(!err){
                     if(result){
                         if(!users[0].dataValues.blocked) {
@@ -37,7 +35,6 @@ module.exports.signin = (req, res) => {
 }
 
 module.exports.fetchUsersData = (req, res) => {
-    console.log(req.body)
     jwt.verifyToken(req.body.token)
     .then(data => {
         // if(!data.error){
@@ -54,7 +51,6 @@ module.exports.fetchUsersData = (req, res) => {
 }
 
 module.exports.signup = (req, res) => {
-    console.log(req.body)
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
             model.user.create({
@@ -87,7 +83,6 @@ module.exports.handleBlock = (req, res) => {
 module.exports.updatePassword = (req, res) => {
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
-            console.log(hash)
             model.user.update(
                 {password : hash},
                 {where : { id : req.body.id }
@@ -160,7 +155,6 @@ const mail = async (token, mail) => {
         if (error) {
           return console.log(error);
         }
-        console.log("Message sent: " + info.response);
         return info.response
       });
       return

@@ -43,7 +43,6 @@ module.exports.deleteProduct = (req, res) => {
         }
     })
     .then(removedProduct => {
-        console.log(removedProduct)
         model.menu.destroy({
             where : {
                 productId : req.body.id

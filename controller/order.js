@@ -8,7 +8,6 @@ module.exports.addOrder = (req, res) => {
     jwt.verifyToken(req.body.token)
     .then(data => {
         if(data.data.id){
-            console.log(req.body)
             model.order.create({
                 userId : data.data.id,
                 status : req.body.status,
@@ -18,7 +17,6 @@ module.exports.addOrder = (req, res) => {
                 recieptUrl : req.body.recieptUrl 
             })
             .then(order => {
-                console.log(req.body.orderItems)
                 return req.body.orderItems.map(item => {
                     model.orderItems.create({
                         orderId : order.dataValues.id,
@@ -73,10 +71,8 @@ module.exports.resolveOrder = (req, res) => {
 }
 
 module.exports.getOrdersByUser = (req, res) => {
-    console.log(req.params)
     jwt.verifyToken(req.params.token)
     .then(data => {
-        console.log("Hit")
         if(data.data.id) {
             model.order.findAll({
                 where : {

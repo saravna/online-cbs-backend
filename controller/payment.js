@@ -18,7 +18,6 @@ module.exports.paytmPayment = (req, res) => {
         let txn_url = 'https://securegw-stage.paytm.in/order/process';
         let form_fields = '';
 
-        console.log("check", checksum)
 
         for(x in params){
             form_fields += `<input type='hidden' name='${x}' value='${params[x]}'/>`
@@ -50,7 +49,6 @@ module.exports.paytmPayment = (req, res) => {
 } 
 
 module.exports.paymentSuccess = (req,res) => {
-    console.log(req.body)
     res.send(req.body.CHECKSUMHASH)
 }
 
@@ -64,7 +62,6 @@ module.exports.stripePayment = (req, res ) => {
 
     })
     .then(resp => {
-        console.log(resp)
         res.json(resp)
     })
     .catch(err => res.json({err : err.raw.message}))

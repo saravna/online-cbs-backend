@@ -20,7 +20,6 @@ exports.name =()=> {
 exports.verifyToken = async(token) => {
     var result
     await jwt.verify(token, 'secret...shhh',(err, data) => {
-        console.log(data)
         if(!err)
             result =  {data : data}
         else 
